@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+    step:
+        image: smallstep/step-ca
+        restart: always
+        ports:
+            - 8443:8443
+        volumes:
+            - ./data:/home/step
