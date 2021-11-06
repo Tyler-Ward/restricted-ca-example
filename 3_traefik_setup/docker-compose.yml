@@ -1,0 +1,32 @@
+version: "3.5"
+
+services:
+    traefik:
+        image: traefik:v2.4
+        restart: always
+        environment:
+            - LEGO_CA_CERTIFICATES=/rootCA.crt
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./config.toml:/config.toml:ro
+            - ./files:/files:ro
+            - ./acme.json:/acme.json
+            - ./rootCA.crt:/rootCA.crt
+            - /var/run/docker.sock:/var/run/docker.sock
+        command: --configfile=/config.toml
+        labels:
+            traefik.http.routers.api.rule: "Host(`traefik.lan`)"
+            traefik.http.routers.api.middlewares: "https-redirect@file"
+
+            traefik.http.routers.api-secure.rule: "Host(`traefik.lan`)"
+            traefik.http.routers.api-secure.service: "api@internal"
+            traefik.http.routers.api-secure.tls.certresolver: "internal"
+
+            traefik.enable: "true"
+
+
+networks:
+    default:
+        name: traefik

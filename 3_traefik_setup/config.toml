@@ -1,0 +1,29 @@
+[log]
+    level = "INFO"
+
+[api]
+    insecure = false
+    dashboard = true
+
+[certificatesResolvers.internal.acme]
+    email = "certificates@server.lan"
+    caServer = "https://acme.lan:8443/acme/acme/directory"
+    storage = "/acme.json"
+
+    [certificatesResolvers.internal.acme.httpChallenge]
+        entryPoint = "http"
+
+[providers]
+    [providers.file]
+        directory = "/files"
+        watch = true
+    [providers.docker]
+        exposedByDefault = false
+        network = "traefik"
+
+[entryPoints]
+    [entryPoints.http]
+        address = ":80"
+
+    [entryPoints.https]
+        address = ":443"
