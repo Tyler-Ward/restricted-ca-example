@@ -4,8 +4,8 @@ Example scripts and config files for creating a limited CA
 This repo contains examples to go along with the limited CA blogpost.
 
 The blogpost can be found at either of the following blogs:
-* Tyler Ward:
-* Mohit Gupta:
+* [Tyler Ward](https://www.scorpia.co.uk/2021/11/27/creating-constrained-certificate-authorities/)
+* [Mohit Gupta](https://skybound.link/2021/11/creating-constrained-certificate-authorities/)
 
 Example requirements
 --------------------
