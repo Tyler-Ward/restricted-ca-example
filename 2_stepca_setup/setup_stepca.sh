@@ -29,3 +29,7 @@ docker-compose up -d
 sleep 2
 echo "Checking Step CA status should print {\"status\":\"ok\"} below if all is working"
 wget --no-check-certificate --quiet -O- https://localhost:8449/health
+
+# remove CA keys coppied into data, stepCA has already coppied what it needs from them
+rm ./data/rootCA.key
+rm ./data/rootCA.crt
